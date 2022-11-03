@@ -4,25 +4,29 @@ import Data from "./data";
 import "./App.css";
 
 const App = () => {
-  const [currentExchangeRate, setCurrentExchangeRate] = useState("3");
+  const [currentExchangeRate, setCurrentExchangeRate] = useState("0");
 
   const handleExchangeRate = (e) => {
-    setCurrentExchangeRate(e.target.value * 1.5);
+    let rate = document.getElementById("rate").value;
+    if (rate === "") {
+      setCurrentExchangeRate("0");
+    } else {
+      setCurrentExchangeRate(e.target.value * rate);
+    }
   };
 
   const changeCurrency = () => {
-    let result = document.getElementById("amount").value;
-    result = result * 1.5;
-    return result;
+    document.getElementById("amount").value = "";
+    document.getElementById("exchangeContainer").value = "";
   };
 
-  console.log(currentExchangeRate);
   return (
     <>
       <Currency
         currentExchangeRate={currentExchangeRate}
-        Data={Data}
+        // Data={Data}
         handleExchangeRate={handleExchangeRate}
+        changeCurrency={changeCurrency}
       />
     </>
   );
