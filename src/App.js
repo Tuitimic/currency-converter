@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import Currency from "./Currency";
+import Data from "./data";
+import "./App.css";
 
-function App() {
+const App = () => {
+  const [currentExchangeRate, setCurrentExchangeRate] = useState("3");
+
+  const handleExchangeRate = (e) => {
+    setCurrentExchangeRate(e.target.value * 1.5);
+  };
+
+  const changeCurrency = () => {
+    let result = document.getElementById("amount").value;
+    result = result * 1.5;
+    return result;
+  };
+
+  console.log(currentExchangeRate);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Currency
+        currentExchangeRate={currentExchangeRate}
+        Data={Data}
+        handleExchangeRate={handleExchangeRate}
+      />
+    </>
   );
-}
+};
 
 export default App;
