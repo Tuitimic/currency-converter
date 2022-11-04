@@ -1,24 +1,24 @@
 const Data = [
   {
     currency: "GBP",
-    exchangeRate: "1.5",
+    exchangeRate: 1,
   },
   {
     currency: "USD",
-    exchangeRate: "1.15",
+    exchangeRate: 1.15,
   },
 
   {
     currency: "CNY",
-    exchangeRate: "25",
+    exchangeRate: 25,
   },
   {
     currency: "Yen",
-    exchangeRate: "1.20",
+    exchangeRate: 1.2,
   },
   {
     currency: "RS",
-    exchangeRate: "0.99",
+    exchangeRate: 0.99,
   },
 ];
 

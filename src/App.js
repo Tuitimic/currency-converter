@@ -1,32 +1,67 @@
 import React, { useState, useEffect } from "react";
 import Currency from "./Currency";
-import Data from "./data";
+// import Data from "./data";
 import "./App.css";
 
 const App = () => {
-  const [currentExchangeRate, setCurrentExchangeRate] = useState("0");
+  const [currentCurrency, setCurrentCurrency] = useState(
+    {
+      currency: "GBP",
+      exchangeRate: "2",
+    },
+    {
+      currency: "USD",
+      exchangeRate: "1.15",
+    },
 
-  const handleExchangeRate = (e) => {
-    let rate = document.getElementById("rate").value;
-    if (rate === "") {
-      setCurrentExchangeRate("0");
-    } else {
-      setCurrentExchangeRate(e.target.value * rate);
+    {
+      currency: "CNY",
+      exchangeRate: "25",
+    },
+    {
+      currency: "Yen",
+      exchangeRate: "1.2",
+    },
+    {
+      currency: "RS",
+      exchangeRate: "0.99",
     }
+  );
+
+  const [input, setInput] = useState(1);
+
+  const [output, setOutput] = useState();
+
+  // create a function that updates the stateOBJ input when the user inputs data in either field
+  const handleInput = (e) => {
+    setInput(e.target.value);
   };
 
-  const changeCurrency = () => {
-    document.getElementById("amount").value = "";
-    document.getElementById("exchangeContainer").value = "";
+  const handleSelectOption = () => {};
+
+  // function that gets triggered to run the caclulation and ouput it
+  // look at input.selectedCurrency * input.toExchange
+  // store that in a new state var
+  const calculation = () => {
+    setOutput(input * currentCurrency.exchangeRate);
   };
+
+  //useEffect --->
+  useEffect(() => {
+    // this block of code will run when input is changed
+    // calls the function that runs the caclulation
+    calculation();
+  }, [input]);
 
   return (
     <>
       <Currency
-        currentExchangeRate={currentExchangeRate}
-        // Data={Data}
-        handleExchangeRate={handleExchangeRate}
-        changeCurrency={changeCurrency}
+        currentCurrency={currentCurrency}
+        exchangeRate={currentCurrency.exchangeRate}
+        handleInput={handleInput}
+        handleSelectOption={handleSelectOption}
+        input={input}
+        output={output}
       />
     </>
   );
